@@ -1,0 +1,30 @@
+name: Daily Auto-Publish
+
+on:
+  schedule:
+    - cron: "0 18 * * *" # 06:00 NZT ~ 17:00 UTC depending on DST; adjust as needed
+  workflow_dispatch: {}
+
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # allow committing the built files
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npm run build
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-4o-mini
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          SITE_BASE: ${{ secrets.SITE_BASE }}
+      - name: Commit & push site
+        run: |
+          git config user.name "digest-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add site/
+          git diff --quiet && echo "No changes" || (git commit -m "daily: publish $(date -u +"%Y-%m-%d")" && git push)
