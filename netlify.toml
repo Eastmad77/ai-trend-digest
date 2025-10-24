@@ -1,0 +1,9 @@
+[build]
+  publish = "site"   # Serve the prebuilt static folder
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# After first deploy, set SITE_BASE secret in GitHub to your Netlify URL.
+# Netlify will also rebuild on every git push.
