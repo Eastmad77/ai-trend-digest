@@ -1,31 +1,23 @@
-# AI Trend Digest (Fully Automated)
+# AI Trend Digest — Fully Automated Daily News Summaries
 
-A self-updating site that fetches tech/AI headlines, summarises them with OpenAI, and publishes daily.
-Perfect for AdSense + newsletter growth.
+A self-updating website that **fetches tech/AI headlines**, **summarises them with OpenAI**, and **publishes a static site** ready for **AdSense** revenue and newsletter growth.  
+Built for **GitHub → Netlify** deployment and kept up to date by a **daily GitHub Action**.
 
-## Quick Start
+---
 
-1) **Create repo** on GitHub, push this folder.
+## Key Features
 
-2) **Set GitHub Secrets** (Settings → Secrets and variables → Actions):
-- `OPENAI_API_KEY`
-- (optional) `NEWSAPI_KEY`
-- `SITE_BASE` → your Netlify URL (set after first deploy; safe to leave for now)
+- 📰 **Daily automated editions** (RSS + popular feeds + optional NewsAPI)
+- ✍️ **AI-written titles, summaries, keywords** (British English, SEO-friendly)
+- 🌐 **Static site output** (`/site`) — simple, fast, cheap to host
+- 🤖 **Hands-off publishing** via GitHub Actions (cron)
+- 💸 **AdSense-ready** ad slots (top + inline)
+- 📨 **Newsletter signup** (Buttondown or Mailchimp)
+- 🔒 **Privacy** & **Terms** pages auto-generated
+- 🗺️ **Sitemap + RSS feed** for SEO
+- 🇳🇿 **Timezone**: Pacific/Auckland by default (tweakable)
 
-3) **Deploy to Netlify**
-- New site from Git
-- Build cmd: `npm run build`
-- Publish dir: `site`
-- After first deploy, copy live URL into GitHub Secret `SITE_BASE`.
+---
 
-4) **Enable the GitHub Action**
-- It will run daily (see `.github/workflows/daily.yml`) and commit fresh pages to `site/`.
-- Every commit triggers Netlify to redeploy.
+## Repo Structure
 
-## Local Dev
-
-```bash
-cp .env.example .env
-npm i
-npm run dev
-# open http://localhost:4321
